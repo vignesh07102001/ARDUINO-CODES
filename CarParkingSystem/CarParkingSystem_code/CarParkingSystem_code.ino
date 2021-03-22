@@ -11,6 +11,10 @@ Servo myservo1; //create object to control Inway Servo
 Servo myservo2; //create object to control Outway Servo
 void check();   //function for checking the IR sensors
 void display1();
+void check1();
+void check2();
+void check3();
+void check4();
 int positio=0;  //for angle of Rotation
 int IR1 =2;     //Input Sensor
 int IR2 =7;     //Output Sensor
@@ -20,11 +24,23 @@ void setup() {
   myservo2.attach(6); //6th pin connected to Servo2
   pinMode(IR1,INPUT); //Intialize the Pin as InputMode
   pinMode(IR2,INPUT);
+  pinMode(A0,INPUT);
+  pinMode(A1,INPUT);
+  pinMode(A2,INPUT);
+  pinMode(A3,INPUT); 
+  pinMode(A4,OUTPUT);
+  pinMode(A5,OUTPUT);
+  pinMode(3,OUTPUT);
+  pinMode(4,OUTPUT);
   lcd.begin(16, 2);
 }
 
 void loop() {
   check();
+  check1();
+  check2();
+  check3();
+  check4();
   display1();
   if(n==0){
     myservo1.write(180);
@@ -62,4 +78,30 @@ void display1(){
   lcd.print("No.of.carsIN  ");
   lcd.print(n/10);
   lcd.print(n%10);
+}
+void check1(){
+  if(digitalRead(A0) ==1)
+    digitalWrite(A4,HIGH);
+  else
+    digitalWrite(A4,LOW);
+  
+}
+void check2(){
+  if(digitalRead(A1) ==1)
+    digitalWrite(A5,HIGH);
+  else
+    digitalWrite(A5,LOW);
+  
+}
+void check3(){
+ if(digitalRead(A2) ==1)
+    digitalWrite(3,HIGH);
+  else
+    digitalWrite(3,LOW);
+}
+void check4(){
+ if(digitalRead(A3) ==1)
+    digitalWrite(4,HIGH);
+  else
+    digitalWrite(4,LOW);
 }
